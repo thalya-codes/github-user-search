@@ -130,17 +130,36 @@ const ExibiInfos = styled.section`
 function App() {
   const [user, setUser] = useState('')
   const [dados, setDados] = useState([])
-
+  const [exibirInfos, setExibirInfos] = useState(false)
  
   const handleOnClick = async () => {
 
     const perfil = await fetch(`https://api.github.com/users/${user}`)
     const respostaJson = await perfil.json()
     setDados(respostaJson)
+
   }
 
+  const showInfo = () => {
+    return (
+      <ExibiInfos>
+      <ul>
+        <li><img src={dados.avatar_url} alt='Imagem dono do perfil'/></li>
+        <li className='nome-usuario'>{dados.name}</li>
+        <li className='login-usuario'>{dados.login}</li>
+        <li className='descricao-usuario'>{dados.bio}</li>
+       
+       <div className='infos-conta'>
+          <li>Seguidores: {dados.followers}</li>
+          <li>Seguindo: {dados.following}</li>
+          <li>Repositórios: {dados.public_repos}</li>
+       </div>
+  
+      </ul>
+      </ExibiInfos>
+    )
+  }
 
- 
   return (
     
     <Main>
@@ -148,24 +167,14 @@ function App() {
 
       <ContainerInput>
         <input type='text' value={user} onChange={e => setUser(e.target.value)}/>    
-        <button type='submit' onClick={handleOnClick}>Search</button>
+        <button type='submit' onClick={() => {
+          handleOnClick()
+          setExibirInfos(true)
+        }}>Search</button>
       </ContainerInput>
+      
+      {exibirInfos ? showInfo() : ''}
 
-      <ExibiInfos>
-        <ul>
-          <li><img src={dados.avatar_url} alt='Imagem dono do perfil'/></li>
-          <li className='nome-usuario'>{dados.name}</li>
-          <li className='login-usuario'>{dados.login}</li>
-          <li className='descricao-usuario'>{dados.bio}</li>
-         
-         <div className='infos-conta'>
-            <li>Seguidores: {dados.followers}</li>
-            <li>Seguindo: {dados.following}</li>
-            <li>Repositórios: {dados.public_repos}</li>
-         </div>
-
-        </ul>
-      </ExibiInfos>
     </Main>
   );
 }

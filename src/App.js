@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import  styled  from "styled-components";
 import { createGlobalStyle } from "styled-components";
+import  api  from "./services/api";
+import imgErro from './assets/personagem.png'
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -86,10 +88,11 @@ const ExibiInfos = styled.section`
     color: #fff;
   }
 
-  img{
+  .imagem-usuario {
     width: 30%;
     clip-path: circle();
     margin-left: 35%;
+
   }
   .nome-usuario {
     font-size: 2rem;
@@ -126,25 +129,35 @@ const ExibiInfos = styled.section`
   }
 
 `
+const ImagemErro = styled.img`
+  width: 70%;
 
+`
 function App() {
   const [user, setUser] = useState('')
   const [dados, setDados] = useState([])
   const [exibirInfos, setExibirInfos] = useState(false)
+  const [notFound, setNotFound] = useState(false)
+
  
   const handleOnClick = async () => {
-
-    const perfil = await fetch(`https://api.github.com/users/${user}`)
-    const respostaJson = await perfil.json()
-    setDados(respostaJson)
-
+    api.get(`users/${user}`)
+      .then(resposta =>{
+        setDados(resposta.data)
+        setExibirInfos(true)
+        setNotFound(false)
+      })
+      .catch(error => {
+        setExibirInfos(false)
+        setNotFound(true)
+      })     
   }
 
   const showInfo = () => {
     return (
       <ExibiInfos>
       <ul>
-        <li><img src={dados.avatar_url} alt='Imagem dono do perfil'/></li>
+        <li><img src={dados.avatar_url} alt='Imagem dono do perfil' className="imagem-usuario"/></li>
         <li className='nome-usuario'>{dados.name}</li>
         <li className='login-usuario'>{dados.login}</li>
         <li className='descricao-usuario'>{dados.bio}</li>
@@ -160,6 +173,15 @@ function App() {
     )
   }
 
+  const msgUserNotFound = () => {
+    return (
+      <ExibiInfos>
+        <ImagemErro src={imgErro} />
+        <h3 style={{marginTop: '20px'}}>Usuário não encontrado</h3>
+      </ExibiInfos>
+    )
+  }
+
   return (
     
     <Main>
@@ -169,11 +191,13 @@ function App() {
         <input type='text' value={user} onChange={e => setUser(e.target.value)}/>    
         <button type='submit' onClick={() => {
           handleOnClick()
-          setExibirInfos(true)
+
         }}>Search</button>
       </ContainerInput>
       
-      {exibirInfos ? showInfo() : ''}
+      {exibirInfos ? showInfo() :''}
+      {notFound && msgUserNotFound()}
+
 
     </Main>
   );

@@ -10,13 +10,12 @@ const GlobalStyle = createGlobalStyle`
 }
 `
 const Main = styled.main`
-background-color: #605F5F;
-display:  flex;
-flex-direction : column;
-align-items: center; 
+    display:  flex;
+    flex-direction : column;
+    align-items: center; 
 
-height: 100vh; 
-padding-top: 5%; 
+    padding-top: 5%;
+    padding-bottom: 5%; 
 `
 
 const Header = styled.header`
@@ -25,7 +24,6 @@ const Header = styled.header`
     align-items: center; 
 
     width: 40vw;
-    height: 28vh;
     box-sizing: border-box;
     padding: 30px 0;
 
@@ -34,6 +32,10 @@ const Header = styled.header`
     backdrop-filter: blur( 9px );
     -webkit-backdrop-filter: blur( 9px );
     border-radius: 10px;
+
+    @media(max-width: 945px){
+      width: 70vw;
+    }
 
 `
 const Logo =  styled.div`
@@ -50,6 +52,10 @@ const Logo =  styled.div`
     img {
       width: 70px;
     }
+
+    @media(max-width: 945px) {
+        font-size: 1rem;
+    }
 `
 const ContainerInput = styled.div`
     display: flex;
@@ -57,32 +63,45 @@ const ContainerInput = styled.div`
     justify-content: space-around;
     padding-top: 40px;
 
-input {
-  background-color: rgba(255, 255, 255, 0.205);
-  border: none;
-  border-radius: 8px;
-  width: 330px;
-  height: 25px;
-  padding: 20px;
-  outline: none;
-  color:  #fff;
-}
-button {
-  background-color: rgba(255, 255, 255, 0.205);
-  border: none;
-  border-radius: 8px;
-  width: 120px;
-  height: 42px;
-  text-align: center;
-  cursor: pointer;
-  color:  #fff;
+    input {
+      background-color: rgba(255, 255, 255, 0.205);
+      border: none;
+      border-radius: 8px;
+      width: 58%;
+      height: 25px;
+      padding: 20px;
+      outline: none;
+      color:  #fff;
+    }
+    button {
+      background-color: rgba(255, 255, 255, 0.205);
+      border: none;
+      border-radius: 8px;
+      width: 120px;
+      height: 42px;
+      text-align: center;
+      cursor: pointer;
+      color:  #fff;
 
-}
+    }
 
+
+    @media(max-width: 945px) {
+      flex-direction: column;
+      align-items: center;
+
+      input , button {
+        width: 90%;
+
+      }
+      button {
+        margin-top: 20px;
+      }
+    }
 `
 const ExibiInfos = styled.section`
   width: 40vw;
-  height: 53vh;
+  height: 100%;
 
   padding-top: 50px;
   padding-bottom: 50px ;
@@ -164,8 +183,13 @@ const ExibiInfos = styled.section`
    .infos-conta-dados {
       display: flex;
       justify-content: space-around;
+      margin-top: 10px;
     }
 
+  }
+
+  @media(max-width: 945px) {
+    width: 70vw;
   }
 
 `
@@ -188,8 +212,20 @@ const MsgErro = styled(ExibiInfos) `
     color: #fff;
     font-family: 'Quicksand', sans-serif;
     font-weight: light;
-    letter-spacing: 10px;
+    letter-spacing: 6.6px;
+    font-size: 1.3rem;
+
     
+  }
+
+  @media(max-width: 945px) {
+    height: auto;
+    padding-bottom: 40px;
+
+    .msg-erro-404 {
+      font-size: 1.1rem;
+      letter-spacing: 5px;
+    }
   }
 `
 

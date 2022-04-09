@@ -169,9 +169,29 @@ const ExibiInfos = styled.section`
   }
 
 `
-const ImagemErro = styled.img`
-  width: 70%;
 
+const MsgErro = styled(ExibiInfos) `
+  img {
+    width: 33%;
+  }
+
+  .span-erro-404 {
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 10px;
+    font-size: 4rem;
+    font-weight: bold;
+    color: #FF66C4;
+    text-shadow: 5px 3px 2px #ffffff70;
+  }
+
+  .msg-erro-404 {
+    color: #fff;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: light;
+    letter-spacing: 10px;
+    
+  }
 `
 
-export { GlobalStyle, Main , Header , Logo ,ContainerInput,  ExibiInfos, ImagemErro }
+
+export { GlobalStyle, Main , Header , Logo ,ContainerInput,  ExibiInfos, MsgErro }

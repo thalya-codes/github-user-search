@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 import  api  from "./services/api"
-import imgErro from './assets/imgs/personagem.png'
+import imgErro from './assets/imgs/4 0 4-ursinho.gif'
 import octocat from './assets/imgs/octocat.png'
 import  GlobalStyle  from'./assets/styles/GlobalStyle'
 import { 
   Main, Header, Logo ,ContainerInput,  
-  ExibiInfos, ImagemErro
+  ExibiInfos, MsgErro
 } from './assets/styles/Styles'
 
 
@@ -59,11 +59,11 @@ function App() {
   const msgUserNaoEncontrado = () => {
     return (
       <>
-
-        <ExibiInfos>
-          <ImagemErro src={imgErro} />
-          <h3 style={{marginTop: '20px'}}>Usuário não encontrado</h3>
-        </ExibiInfos>
+        <MsgErro>
+          <img src={imgErro} alt='Gif de um ursinho com gorro de papai noel chorando'/>
+          <span className="span-erro-404">404</span>
+          <h3 style={{marginTop: '20px'}} className='msg-erro-404'>Usuário não encontrado</h3>
+        </MsgErro>
       </>
     )
   }

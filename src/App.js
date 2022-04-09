@@ -78,7 +78,7 @@ function App() {
       <Header>
         <Logo>
              <img src={octocat} alt="Imagem do octocat com um lupa"/>
-             <h1 className="titulo-logo">Github dev find</h1>             
+             <h1 className="titulo-logo">Github Dev Finder</h1>             
         </Logo>
         <ContainerInput>
           <input type='text' value={user} onChange={e => setUser(e.target.value)}/>    

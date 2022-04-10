@@ -1,13 +1,13 @@
 import React, { useState } from "react"
 import  api  from "./services/api"
-import imgErro from './assets/imgs/4 0 4-ursinho.gif'
 import octocat from './assets/imgs/octocat.png'
 import  GlobalStyle  from'./assets/styles/GlobalStyle'
-import { 
-  Main, Header, Logo ,ContainerInput,  
-  ExibiInfos, MsgErro
-} from './assets/styles/Styles'
-
+import Main from './assets/styles/conteudo-principal/Main'
+import Header from './assets/styles/cabecalho/Header'
+import Logo from './assets/styles/cabecalho/Logo'
+import ContainerInput from './assets/styles/cabecalho/ContainerInput'
+import ExibirInfos from "./components/ExibirInfos"
+import MensagemDeErro from "./components/MensagemDeErro"
 
 function App() {
   const [user, setUser] = useState('')
@@ -29,59 +29,17 @@ function App() {
       })     
   }
 
-  const showInfo = () => {
-    return (
-      
-        <ExibiInfos>
-          <ul>
-            <li><img src={dados.avatar_url} alt='Imagem dono do perfil' className="imagem-usuario"/></li>
-            <li className='nome-usuario'>{dados.name}</li>
-            <li className='descricao-usuario'>{dados.bio}</li>
-          
-            <div className='infos-conta-container'>
-              <li className="info-conta-dados">
-                <span>Seguidores</span>
-                <span>{dados.followers}</span>
-              </li>
-
-              <li className="info-conta-dados">
-                <span>Seguindo</span>
-                <span>{dados.following}</span>
-              </li>
-              <li className="info-conta-dados">
-                <span>Repositórios</span>
-                <span>{dados.public_repos}</span>
-              </li>
-            </div>
-          </ul>
-        </ExibiInfos>
-    )
-  }
-
-  const msgUserNaoEncontrado = () => {
-    return (
-      <>
-        <MsgErro>
-          <img src={imgErro} alt='Gif de um ursinho com gorro de papai noel chorando'/>
-          <span className="span-erro-404">404</span>
-          <h3 style={{marginTop: '20px'}} className='msg-erro-404'>Usuário não encontrado</h3>
-        </MsgErro>
-      </>
-    )
-  }
-
-
-  
-
   return (
     <>
       <GlobalStyle />
       <Main>    
+
         <Header>
             <Logo>
                 <img src={octocat} alt="Imagem do octocat com um lupa"/>
                 <h1 className="titulo-logo">Github Dev Finder</h1>             
             </Logo>
+
             <ContainerInput>
               <input type='text' value={user} onChange={e => setUser(e.target.value)}/>    
               <button type='submit' onClick={() => {
@@ -90,11 +48,9 @@ function App() {
             </ContainerInput>        
         </Header>  
 
-        {exibirInfos ? showInfo() :''}
-        {usuarioNaoEncontrado && msgUserNaoEncontrado()}
+        {exibirInfos ? <ExibirInfos dados={dados} /> : ''}
+        {usuarioNaoEncontrado && MensagemDeErro()}
       </Main>
-
-
 
     </>
 

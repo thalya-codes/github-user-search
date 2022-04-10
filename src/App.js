@@ -38,19 +38,21 @@ function App() {
             <li className='nome-usuario'>{dados.name}</li>
             <li className='descricao-usuario'>{dados.bio}</li>
           
-          <div className='infos-conta-container'>
-            <div className="infos-conta-titulos">
-              <li>Seguidores</li>
-              <li>Seguindo</li>
-              <li>Repositórios</li>
-            </div>
+            <div className='infos-conta-container'>
+              <li className="info-conta-dados">
+                <span>Seguidores</span>
+                <span>{dados.followers}</span>
+              </li>
 
-            <div className="infos-conta-dados">
-              <li>{dados.followers}</li>
-              <li>{dados.following}</li>
-              <li>{dados.public_repos}</li>
+              <li className="info-conta-dados">
+                <span>Seguindo</span>
+                <span>{dados.following}</span>
+              </li>
+              <li className="info-conta-dados">
+                <span>Repositórios</span>
+                <span>{dados.public_repos}</span>
+              </li>
             </div>
-          </div>      
           </ul>
         </ExibiInfos>
     )
@@ -75,23 +77,22 @@ function App() {
     <>
       <GlobalStyle />
       <Main>    
-      <Header>
-        <Logo>
-             <img src={octocat} alt="Imagem do octocat com um lupa"/>
-             <h1 className="titulo-logo">Github Dev Finder</h1>             
-        </Logo>
-        <ContainerInput>
-          <input type='text' value={user} onChange={e => setUser(e.target.value)}/>    
-          <button type='submit' onClick={() => {
-            handleOnClick()
+        <Header>
+            <Logo>
+                <img src={octocat} alt="Imagem do octocat com um lupa"/>
+                <h1 className="titulo-logo">Github Dev Finder</h1>             
+            </Logo>
+            <ContainerInput>
+              <input type='text' value={user} onChange={e => setUser(e.target.value)}/>    
+              <button type='submit' onClick={() => {
+                handleOnClick()
+              }}>Search</button>
+            </ContainerInput>        
+        </Header>  
 
-          }}>Search</button>
-        </ContainerInput>        
-      </Header>  
-
-      {exibirInfos ? showInfo() :''}
-      {usuarioNaoEncontrado && msgUserNaoEncontrado()}
-</Main>
+        {exibirInfos ? showInfo() :''}
+        {usuarioNaoEncontrado && msgUserNaoEncontrado()}
+      </Main>
 
 
 

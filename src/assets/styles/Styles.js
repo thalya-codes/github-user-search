@@ -34,7 +34,7 @@ const Header = styled.header`
     border-radius: 10px;
 
     @media(max-width: 945px){
-      width: 70vw;
+      width: 90vw;
     }
 
 `
@@ -136,12 +136,12 @@ const ExibiInfos = styled.section`
   }
 
   .imagem-usuario {
-    width: 100px;
+    width: 150px;
     clip-path: circle();
   }
 
   .nome-usuario {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;
     
@@ -165,31 +165,45 @@ const ExibiInfos = styled.section`
 
   .infos-conta-container {
     display: flex;
-    flex-direction: column; 
 
     margin-top: 25px;
     margin-bottom: 25px;
 
     width: 90%;
   }
+
+  .info-conta-dados {
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+  }
   
-
-  .infos-conta-titulos {
-      display: flex;
-      justify-content: space-around;
+  .info-conta-dados span:first-child {
+      margin-bottom: 5px;
     }
-
-
-   .infos-conta-dados {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 10px;
-    }
-
   }
 
   @media(max-width: 945px) {
-    width: 70vw;
+    width: 90vw;
+
+    .infos-conta-container {
+      flex-direction: column;
+    }
+
+    .info-conta-dados {
+      height: 85px;
+
+      background: #0820264f;
+      box-sizing: border-box;
+      border-radius: 8px;
+
+      padding-top: 20px;
+      padding-bottom: 20px;
+
+      margin-top: 20px;
+    }
   }
 
 `
@@ -224,7 +238,7 @@ const MsgErro = styled(ExibiInfos) `
 
     .msg-erro-404 {
       font-size: 1.1rem;
-      letter-spacing: 5px;
+      letter-spacing: 0px;
     }
   }
 `

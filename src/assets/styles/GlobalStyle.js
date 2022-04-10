@@ -7,8 +7,7 @@ const GlobalStyle = createGlobalStyle`
   padding: 0;
   box-sizing:  border-box;
   font-family: 'Quicksand', sans-serif;
-  font-size: 1.1rem;
-
+  font-size: 18px;
 }
 
 body {

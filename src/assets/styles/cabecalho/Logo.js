@@ -6,8 +6,9 @@ const Logo = styled.div`
 
     h1 {
       color: #fff;
-        font-weight: light;
+      font-weight: light;
       letter-spacing: 3px;
+      font-size: 2rem;
     }
 
     img {
